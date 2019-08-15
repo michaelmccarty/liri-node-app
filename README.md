@@ -2,7 +2,7 @@
 ```music info from spotify```
 
 ![liri bot](node.png)
-Format: ![Alt Text](url)
+
 
    * This will show the following information about the song in your terminal/bash window
 
