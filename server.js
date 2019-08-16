@@ -20,7 +20,7 @@ let decision = "";
 let title = "";
 
 
-/**
+
 if (nodeArgs.length == 2) { //if no command line parameters are passed
 
     inquirer
@@ -42,13 +42,37 @@ if (nodeArgs.length == 2) { //if no command line parameters are passed
             console.log("\nYou chose:  " + inquirerResponse.mORs);
             decision = inquirerResponse.mORs;
         });
-//    if (decision == "Movie")
-//        showMovies(title);
-//    else if (decision == "Song")
-//        showSongs(title);
+    if (decision == "Movie")
+        showMovies(title);
+    else if (decision == "Song")
+        showSongs(title);
 }
 
-*/
+else if (nodeArgs.length > 2) { // if passed arguments at runtime
+
+    let _title = "";
+    let selector = "";
+
+
+    for (let i = 2; i < nodeArgs.length; i++) {
+
+        if (i > 2 && i < nodeArgs.length) {
+            _title = _title + "+" + nodeArgs[i];
+        } else {
+            _title += nodeArgs[i];
+
+        }
+        if (selector=="")
+            selector=_title;
+    }
+
+    console.log(_title);
+
+    if (selector.toLowerCase()=="song")
+        console.log("success");
+
+}
+
 
 
 
@@ -135,3 +159,14 @@ let showMovies = function (movie) {
     });
 }
 */
+
+
+/**
+        Artist(s)
+
+        The song's name
+
+        A preview link of the song from Spotify
+
+        The album that the song is from
+ */
