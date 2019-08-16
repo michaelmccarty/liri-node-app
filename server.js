@@ -52,6 +52,9 @@ if (nodeArgs.length == 2) { //if no command line parameters are passed
         });
 }
 
+// -------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------
+
 else if (nodeArgs.length > 2) { // if passed arguments at runtime
 
     let _title = "";
@@ -70,7 +73,8 @@ else if (nodeArgs.length > 2) { // if passed arguments at runtime
             selector = _title;
     }
 
-    console.log(_title);
+    _title = _title.split("+").join(" ");
+
 
     if (selector.toLowerCase() == "song")
         showSongs(_title);

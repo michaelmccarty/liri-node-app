@@ -10,3 +10,13 @@
      * Spotify API
      * OMDB API
    * If no parameters are supplied, provides clean CLI to gather input.
+
+```
+Version 0.0.1:
+
+Works without any arguments.
+TODO:
+   Make arguments passed at run time into server.js show the same.
+
+
+```
