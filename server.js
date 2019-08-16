@@ -21,8 +21,6 @@ let nodeArgs = process.argv;
 let decision = "";
 let title = "";
 
-console.log(process.env.TRILOGY);
-
 if (nodeArgs.length == 2) { //if no command line parameters are passed
 
     inquirer         //prompting user input
