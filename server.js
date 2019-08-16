@@ -6,7 +6,7 @@ let keys = require("./keys.js");
 let clear = require("clear");
 let app = require("express");
 let axios = require("axios");
-let fs = require("fs");
+let chalk = require('chalk');
 let inquirer = require("inquirer");
 let Spotify = require('node-spotify-api');
 let spotify = new Spotify({
@@ -74,6 +74,7 @@ else if (nodeArgs.length > 2) { // if passed arguments at runtime
 
     _title = _title.split("+").join(" ");
 
+    clear();
 
     if (selector.toLowerCase() == "song")
         showSongs(_title);
@@ -81,7 +82,7 @@ else if (nodeArgs.length > 2) { // if passed arguments at runtime
     else if (selector.toLowerCase() == "movie")
         showMovies(_title);
     else
-        console.log("Please specify song or movie as first word, followed by its Title\n example: `movie Top Gun` or `song Black Magic Woman`");
+        console.log(chalk.red("Please specify song or movie as first word, followed by its Title\n example: `movie Top Gun` or `song Black Magic Woman`"));
 
 }
 
@@ -116,8 +117,11 @@ let showMovies = function (movie) {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response.data.Title);
-            console.log("Release Year: " + response.data.Year);
+            console.log(chalk.red(`
+                        ${response.data.Title} -${response.data.Year}`));
+
+            console.log(chalk.underline.bgBlue(response.data.Plot));
+            console.log("\n");
         })
         .catch(function (error) {
             if (error.response) console.log(error.response);
