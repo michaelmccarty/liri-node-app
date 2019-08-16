@@ -4,8 +4,9 @@
 ![liri bot](node.png)
 
 `Features`
-   * Will take parameters as variables. Example: `` server.js movie The Matrix `` or `` server.js song Black Magic Woman ``.
-   * This will show the following information about the song or movie in your terminal/bash window.
-     * Movie data
-     * Song data
+   * Will take parameters as variables.
+      *  Example: `` server.js movie The Matrix `` or `` server.js song Black Magic Woman ``.
+   * Liri displays data from
+     * Spotify API
+     * OMDB API
    * If no parameters are supplied, provides clean CLI to gather input.
