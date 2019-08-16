@@ -23,16 +23,16 @@ let title = "";
 
 if (nodeArgs.length == 2) { //if no command line parameters are passed
 
-    inquirer
+    inquirer         //prompting user input
         .prompt([
             {
                 type: "input",
-                message: "Enter a Movie or a Song",
+                message: "Enter a Movie or a Song Name",
                 name: "title"
             },
             {
                 type: "list",
-                message: "Is it a Movie or a Song?",
+                message: "now is that a Movie or a Song?",
                 choices: ["Movie", "Song"],
                 name: "mORs"
             }
@@ -54,7 +54,7 @@ else if (nodeArgs.length > 2) { // if passed arguments at runtime
     let selector = "";
 
 
-    for (let i = 2; i < nodeArgs.length; i++) {
+    for (let i = 2; i < nodeArgs.length; i++) {  //parse "movie" vs "song" command, then determine what function to call
 
         if (i > 2 && i < nodeArgs.length) {
             _title = _title + "+" + nodeArgs[i];
@@ -69,7 +69,12 @@ else if (nodeArgs.length > 2) { // if passed arguments at runtime
     console.log(_title);
 
     if (selector.toLowerCase()=="song")
-        console.log("success");
+        showSongs(_title);
+
+    else if (selector.toLowerCase()=="movie")
+        showMovies(_title);
+    else
+        console.log ("Please specify song or movie as first word, followed by its Title\n example: `movie Top Gun` or `song Black Magic Woman`");
 
 }
 
@@ -89,28 +94,11 @@ let showSongs = function (song) {
 
 
 
-/**
+
 let showMovies = function (movie) {
 
     let movieName = movie;
 
-    fs.readFile("random.txt", "utf8", function (error, data) {
-
-
-        // Create an empty variable for holding the movie name
-        //let movieName = "";
-
-        // Loop through all the words in the node argument
-        // And do a little for-loop magic to handle the inclusion of "+"s
-        // for (var i = 2; i < nodeArgs.length; i++) {
-
-        //     if (i > 2 && i < nodeArgs.length) {
-        //         movieName = movieName + "+" + nodeArgs[i];
-        //     } else {
-        //         movieName += nodeArgs[i];
-
-        //     }
-        // }
 
         let queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
@@ -126,39 +114,11 @@ let showMovies = function (movie) {
                     // The request was made and the server responded with a status code
                     // that falls out of the range of 2xx
                     console.log("---------------Data---------------");
-                    console.log(error.response.data);
-                    console.log("---------------Status---------------");
-                    console.log(error.response.status);
-                    console.log("---------------Status---------------");
-                    console.log(error.response.headers);
-                } else if (error.request) {
-                    // The request was made but no response was received
-                    // `error.request` is an object that comes back with details pertaining to the error that occurred.
-                    console.log(error.request);
-                } else {
-                    // Something happened in setting up the request that triggered an Error
-                    console.log("Error", error.message);
+                    console.log(error.response);
                 }
-                console.log(error.config);
             });
-
-
-
-
-        if (error) { return console.log(error); }
-
-        // We will then print the contents of data
-        console.log(data);
-
-        // Then split it by commas (to make it more readable)
-        var dataArr = data.split(",");
-
-        // We will then re-display the content as an array for later use.
-        console.log(dataArr);
-
-    });
 }
-*/
+
 
 
 /**
